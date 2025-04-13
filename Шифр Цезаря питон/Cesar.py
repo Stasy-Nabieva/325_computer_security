@@ -7,8 +7,13 @@ def encrypt(text, shift):
         else:
             encrypted_text += char
     return encrypted_text
+def decrypt(text, shift):
+    return encrypt(text, -shift)
 
 if __name__ == "__main__":
     user_input = input("Введите текст для шифрования: ")
     shift_value = int(input("Введите значение сдвига: "))
+    encrypted_text = encrypt(user_input, shift_value)
     print("Зашифрованный текст:", encrypt(user_input, shift_value))
+    decrypted_text = decrypt(encrypted_text, shift_value)
+    print("Расшифрованный текст:", decrypted_text)    

@@ -11,7 +11,13 @@ class TestPermutationCipher(unittest.TestCase):
     def test_decryption(self):
         self.assertEqual(decrypt_permutation("EHLL*O", [2, 1]), "HELLO")
         self.assertEqual(decrypt_permutation("WROL*D", [1, 3, 2]), "WORLD")
-
+        
+    def test_encryption_empty(self):
+        self.assertEqual(permutation_cipher("", [2, 1]), "")   
+        
+    def test_non_alpha_characters(self):
+        self.assertEqual(permutation_cipher("hello123",[2, 1, 3]), "ehlol132*")
+        self.assertEqual(permutation_cipher("ehlol132*",[2, 1, 3]), "hello123*")
    
     @patch('builtins.input', side_effect=["2 1 3"])
     def test_get_key_from_input(self, mock_input):
